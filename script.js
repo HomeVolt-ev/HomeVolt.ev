@@ -7,87 +7,70 @@ document.addEventListener("DOMContentLoaded", () => {
         direction: 'vertical',
         smooth: true
     });
-
     function raf(time) {
         lenis.raf(time);
         requestAnimationFrame(raf);
     }
     requestAnimationFrame(raf);
 
-    // 2. Register GSAP Plugins
+    // 2. Register GSAP
     gsap.registerPlugin(ScrollTrigger);
 
-    // 3. Hero Animation (Reveal Text)
-    const tl = gsap.timeline();
-    
-    tl.from(".badge-pill", { 
-        y: -20, 
-        opacity: 0, 
-        duration: 0.8, 
-        ease: "power3.out" 
-    })
-    .from(".line-reveal", {
-        y: 100,
-        opacity: 0,
-        duration: 1,
-        stagger: 0.2,
-        ease: "power4.out"
-    }, "-=0.4")
-    .from(".hero-sub", {
-        y: 20,
-        opacity: 0,
-        duration: 1,
-        ease: "power3.out"
-    }, "-=0.6");
-
-    // 4. Scroll Triggers for Sections
-    gsap.utils.toArray(".bento-card").forEach((card, i) => {
-        gsap.from(card, {
-            scrollTrigger: {
-                trigger: card,
-                start: "top 85%",
-            },
-            y: 50,
-            opacity: 0,
-            duration: 0.8,
-            delay: i * 0.1,
-            ease: "back.out(1.7)"
+    // 3. Hero Stats Counter Animation
+    const stats = document.querySelectorAll(".stat-num");
+    stats.forEach(stat => {
+        const target = +stat.getAttribute("data-target");
+        gsap.to(stat, {
+            innerText: target,
+            duration: 2,
+            snap: { innerText: 1 },
+            ease: "power2.out"
         });
     });
 
-    // 5. Mouse Follower Glow
-    const cursor = document.querySelector('.cursor-glow');
-    
-    document.addEventListener('mousemove', (e) => {
-        const x = e.clientX;
-        const y = e.clientY;
-        
-        cursor.style.left = x + 'px';
-        cursor.style.top = y + 'px';
+    // 4. Battery Charging Simulation (Scroll Triggered)
+    ScrollTrigger.create({
+        trigger: ".tech-section",
+        start: "top 70%",
+        onEnter: () => {
+            let charge = 0;
+            const batteryFill = document.querySelector(".battery-level");
+            const chargeText = document.getElementById("charge-percent");
+            
+            const interval = setInterval(() => {
+                if(charge >= 100) clearInterval(interval);
+                else {
+                    charge++;
+                    batteryFill.style.height = charge + "%";
+                    chargeText.innerText = charge;
+                }
+            }, 30); // Speed of charging
+        }
     });
 
-    // 6. Form Submission Logic (Ultra Premium)
+    // 5. Mouse Follower
+    const cursor = document.querySelector('.cursor-glow');
+    document.addEventListener('mousemove', (e) => {
+        cursor.style.left = e.clientX + 'px';
+        cursor.style.top = e.clientY + 'px';
+    });
+
+    // 6. Form Logic
     const form = document.querySelector('.ultra-form');
     if(form) {
         form.addEventListener('submit', (e) => {
             const btn = form.querySelector('.submit-btn');
             const originalHTML = btn.innerHTML;
-            
             btn.innerHTML = "Processing...";
             btn.style.opacity = "0.7";
-            
             setTimeout(() => {
                 btn.innerHTML = `Request Confirmed <i data-lucide="check"></i>`;
-                btn.style.background = "#fff";
-                btn.style.color = "#000";
-                
+                btn.style.background = "#fff"; btn.style.color = "#000";
                 form.reset();
                 lucide.createIcons();
-                
                 setTimeout(() => {
                     btn.innerHTML = originalHTML;
-                    btn.style.background = "";
-                    btn.style.color = "";
+                    btn.style.background = ""; btn.style.color = "";
                     lucide.createIcons();
                 }, 4000);
             }, 1500);
