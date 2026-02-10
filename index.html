@@ -25,7 +25,6 @@
                 <a href="#tech" class="link-hover">Technology</a>
                 <a href="#contact" class="cta-button">
                     <span>Plan Infrastructure</span>
-                    <div class="cta-shine"></div>
                 </a>
             </div>
         </div>
@@ -34,22 +33,49 @@
     <main id="smooth-wrapper">
         
         <section class="hero-section">
-            <div class="hero-grid-bg"></div>
-            <div class="hero-container">
-                <div class="badge-pill" data-speed="0.9">
+            <div class="hero-content">
+                <div class="badge-pill">
                     <span class="dot"></span> Live Grid Status: Stable
                 </div>
-                <h1 class="hero-title" data-speed="1.1">
+                <h1 class="hero-title">
                     <span class="line-reveal">Powering the</span><br>
-                    <span class="line-reveal text-gradient">Next Generation</span><br>
-                    <span class="line-reveal">of Living.</span>
+                    <span class="line-reveal text-gradient">EV Revolution.</span>
                 </h1>
-                <p class="hero-sub" data-speed="1.0">
-                    We replace chaotic individual chargers with a centralized, intelligent, and scalable EV infrastructure.
+                <p class="hero-sub">
+                    Centralized, intelligent, and scalable charging infrastructure for modern apartment societies.
                 </p>
+                <div class="hero-stats">
+                    <div class="stat-box">
+                        <span class="stat-num" data-target="100">0</span><span class="stat-unit">%</span>
+                        <span class="stat-label">Safety Uptime</span>
+                    </div>
+                    <div class="stat-box">
+                        <span class="stat-num" data-target="45">0</span><span class="stat-unit">min</span>
+                        <span class="stat-label">Avg. Full Charge</span>
+                    </div>
+                </div>
             </div>
-            
-            <div class="energy-line"></div>
+
+            <div class="hero-visual">
+                <div class="hologram-container">
+                    <svg class="car-svg" viewBox="0 0 600 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path class="car-body" d="M10 150 L60 80 L180 30 L400 30 L520 80 L580 120 L580 150 H10Z" stroke="#00E676" stroke-width="2"/>
+                        <circle class="wheel-front" cx="110" cy="150" r="40" stroke="#00E676" stroke-width="2"/>
+                        <circle class="wheel-back" cx="480" cy="150" r="40" stroke="#00E676" stroke-width="2"/>
+                        <path class="window-line" d="M180 30 L180 80 L400 80 L400 30" stroke="#00E676" stroke-width="1" stroke-dasharray="5 5"/>
+                    </svg>
+                    
+                    <div class="charging-cable"></div>
+                    
+                    <div class="energy-flow">
+                        <div class="particle p1"></div>
+                        <div class="particle p2"></div>
+                        <div class="particle p3"></div>
+                    </div>
+
+                    <div class="platform-glow"></div>
+                </div>
+            </div>
         </section>
 
         <section id="vision" class="conflict-section">
@@ -62,7 +88,6 @@
                         <div class="card-icon"><i data-lucide="zap-off"></i></div>
                         <h3>Grid Overload</h3>
                         <p>Unmanaged loads trip community breakers instantly.</p>
-                        <div class="bg-noise"></div>
                     </div>
                     <div class="bento-card card-dark">
                         <div class="card-icon"><i data-lucide="alert-triangle"></i></div>
@@ -95,24 +120,19 @@
                             <li class="tech-item">
                                 <span class="num">02</span>
                                 <div class="txt">
-                                    <strong>Centralized Busbar Trunking</strong>
-                                    <p>Aviation-grade safety with zero clutter.</p>
-                                </div>
-                            </li>
-                            <li class="tech-item">
-                                <span class="num">03</span>
-                                <div class="txt">
-                                    <strong>Real-Time Telemetry</strong>
+                                    <strong>Smart Metering</strong>
                                     <p>App-based tracking & automated billing.</p>
                                 </div>
                             </li>
                         </ul>
                     </div>
-                    <div class="tech-visual">
-                        <div class="pulse-circle c1"></div>
-                        <div class="pulse-circle c2"></div>
-                        <div class="pulse-circle c3"></div>
-                        <div class="connector-line"></div>
+                    
+                    <div class="battery-visual">
+                        <div class="battery-body">
+                            <div class="battery-level"></div>
+                            <div class="battery-bolt"><i data-lucide="zap"></i></div>
+                        </div>
+                        <div class="battery-status">Charging: <span id="charge-percent">0</span>%</div>
                     </div>
                 </div>
             </div>
